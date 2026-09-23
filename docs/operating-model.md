@@ -43,7 +43,8 @@ flowchart LR
 
 **Purpose:** Decide whether it is worth building before deciding how.
 
-- Stakeholder interviews, process mapping, data pull
+- Check fit against the [product vision board](../templates/product-vision-board.md) and [roadmap](../templates/roadmap.md)
+- Stakeholder interviews ([stakeholder map](../templates/stakeholder-map.md)), [personas](../templates/persona.md), process mapping, data pull
 - Score the opportunity with WSJF or RICE
 - Write the PRD for anything larger than a single story ([template](../templates/prd.md))
 
@@ -57,6 +58,8 @@ flowchart LR
 
 **Purpose:** Turn validated value into small, testable, independent stories.
 
+- For epics, build a [story map](../templates/story-map.md) and define the walking skeleton first
+- Run refinement per the [ceremony playbook](../templates/ceremonies.md)
 - Split using INVEST, and by workflow step, business rule, data variation, or interface
 - Acceptance criteria in Given / When / Then
 - Three Amigos review (PO + Dev + QA) for anything with rules or edge cases
@@ -79,6 +82,7 @@ flowchart LR
 
 **Purpose:** Ship safely and tell people what changed.
 
+- UAT with a requirement → test → sign-off trail ([UAT plan & traceability](../templates/uat-and-traceability.md))
 - Release notes generated from merged stories ([template](../templates/release-notes.md))
 - Rollback plan for anything touching money, compliance, or customer data
 - Stakeholder sign-off captured where regulation requires it

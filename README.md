@@ -27,9 +27,29 @@ It runs in any ecosystem: GitHub, Jira, Azure DevOps, Linear, or a spreadsheet. 
 | [`docs/adapting.md`](docs/adapting.md) | Field mapping for GitHub, Jira, Azure DevOps, Linear | Adopt in any tool in under an hour |
 | [`docs/metrics.md`](docs/metrics.md) | Flow and quality metrics with formulas and targets | Manage the system, not the people |
 | [`docs/automation-playbook.md`](docs/automation-playbook.md) | What to automate, in priority order, per tool | Put effort where it saves the most time |
-| [`templates/`](templates) | PRD, user story, DoR, DoD, PI planning, retros, decision log, release notes | A consistent, reviewable standard |
+| [`templates/`](templates) | 15 templates covering strategy through release (see below) | A consistent, reviewable standard |
 | [`automation/`](automation) | `story_lint.py`, `backlog_health.py`, GitHub issue forms and Actions | Quality gates that run themselves |
 | [`examples/`](examples) | Sample backlog export and a fully worked story | See it in action before adopting |
+
+## Templates by stage
+
+| Stage | Template | Use it to… |
+|---|---|---|
+| **Strategy** | [Product vision board](templates/product-vision-board.md) | Anchor every decision to a vision, a North Star metric, and guardrails |
+| | [Outcome roadmap](templates/roadmap.md) | Communicate Now / Next / Later priorities by outcome, not date |
+| | [Stakeholder map & comms plan](templates/stakeholder-map.md) | Decide who to involve, how, and how often |
+| **Discovery** | [Persona](templates/persona.md) | Ground decisions in research about real users |
+| | [PRD](templates/prd.md) | Align on problem, metrics and requirements before building |
+| | [Decision log](templates/decision-log.md) | Record why a decision was made, not only what |
+| **Planning** | [Story map](templates/story-map.md) | Slice an epic into a walking skeleton and releases |
+| | [PI planning kit](templates/pi-planning.md) | Plan objectives, capacity, dependencies and risks (SAFe) |
+| **Refinement** | [User story](templates/user-story.md) | Write INVEST stories with Given/When/Then acceptance criteria |
+| | [Definition of Ready](templates/definition-of-ready.md) | Gate what enters a sprint (partly automated) |
+| **Delivery** | [Ceremony playbook](templates/ceremonies.md) | Run refinement, planning (with sprint goal), review and Three Amigos |
+| | [Definition of Done](templates/definition-of-done.md) | Gate what counts as shippable |
+| **Release** | [UAT plan & traceability matrix](templates/uat-and-traceability.md) | Prove requirement → test → sign-off, ready for an audit |
+| | [Release notes](templates/release-notes.md) | Tell users what changed, with the benefit first |
+| **Learn** | [Retro formats](templates/retro-formats.md) | Improve the system every sprint, including the Quality Gate Review |
 
 ## Quick start (5 minutes)
 
@@ -60,6 +80,9 @@ To use it on GitHub, copy `.github/` into your repo. Every new story issue is th
 ## Roadmap
 
 - [x] Core templates and operating model
+- [x] Strategy and stakeholder templates (vision board, roadmap, stakeholder map, personas, story map)
+- [x] Ceremony playbook, UAT plan and traceability matrix
+- [ ] RAID log, discovery interview guide, OKR-to-epic tree
 - [x] Story linter and backlog health report
 - [x] GitHub issue forms and quality-gate workflow
 - [ ] Jira Automation and Azure DevOps pipeline equivalents (exportable rules)
