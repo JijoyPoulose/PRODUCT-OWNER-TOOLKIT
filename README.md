@@ -54,8 +54,8 @@ It runs in any ecosystem: GitHub, Jira, Azure DevOps, Linear, or a spreadsheet. 
 ## Quick start (5 minutes)
 
 ```bash
-git clone https://github.com/<you>/po-toolkit.git
-cd po-toolkit
+git clone https://github.com/JijoyPoulose/PRODUCT-OWNER-TOOLKIT.git
+cd PRODUCT-OWNER-TOOLKIT
 
 # 1. Lint a user story against the quality standard
 python automation/scripts/story_lint.py examples/story-good.md
