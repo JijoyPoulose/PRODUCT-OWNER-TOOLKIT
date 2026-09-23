@@ -1,0 +1,64 @@
+name: User story
+description: A deliverable slice of value. It must meet the Definition of Ready before sprint planning.
+title: "[Story] "
+labels: ["story", "needs-refinement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write it so the team could start tomorrow without asking you a question.
+        An automated quality gate checks this issue when it's created. See `templates/definition-of-ready.md`.
+  - type: input
+    id: parent
+    attributes:
+      label: Parent epic / feature
+      placeholder: "#12 Pre-arrival data quality"
+  - type: textarea
+    id: story
+    attributes:
+      label: Story
+      value: |
+        **As a**
+        **I want**
+        **So that**
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why this matters. Include data, links, and screenshots.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Cover the happy path, an edge case, and an error path.
+      render: gherkin
+      value: |
+        Scenario:
+          Given
+          When
+          Then
+
+        Scenario: Error path
+          Given
+          When
+          Then
+    validations:
+      required: true
+  - type: textarea
+    id: rules
+    attributes:
+      label: Business rules / out of scope
+  - type: input
+    id: dependencies
+    attributes:
+      label: Dependencies
+      placeholder: "None, or: team / system with owner and date"
+    validations:
+      required: true
+  - type: dropdown
+    id: estimate
+    attributes:
+      label: Estimate (story points)
+      options: ["Not estimated yet", "1", "2", "3", "5", "8", "13 (split me)"]

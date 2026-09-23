@@ -1,0 +1,27 @@
+# Weekly: flag backlog items untouched for 90 days so they get re-validated or closed.
+# Nothing is closed automatically. A person decides.
+name: Stale backlog sweep
+
+on:
+  schedule:
+    - cron: "0 14 * * 1"   # Mondays 14:00 UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          days-before-issue-stale: 90
+          days-before-issue-close: -1
+          days-before-pr-stale: -1
+          stale-issue-label: stale
+          exempt-issue-labels: "pinned,in-progress"
+          stale-issue-message: >
+            This item hasn't changed in 90 days. At the next refinement, **re-validate**
+            it (is the problem still real? has the priority changed?), **merge** it
+            into another item, or **close** it. A lean backlog is a fast backlog.

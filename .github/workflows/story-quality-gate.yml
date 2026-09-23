@@ -1,0 +1,59 @@
+# Runs the Definition of Ready linter on every story issue, and posts or updates one comment.
+# It labels, it doesn't block: people make the final call.
+name: Story quality gate
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  lint-story:
+    if: contains(github.event.issue.labels.*.name, 'story')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Lint story
+        id: lint
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          printf '# %s\n\n%s\n' "$ISSUE_TITLE" "$ISSUE_BODY" > story.md
+          python automation/scripts/story_lint.py story.md --format markdown \
+            --dor-link "${{ github.server_url }}/${{ github.repository }}/blob/${{ github.event.repository.default_branch }}/templates/definition-of-ready.md" \
+            > report.md
+          if python automation/scripts/story_lint.py story.md --strict > /dev/null; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "<!-- story-quality-gate -->" >> report.md
+
+      - name: Post or update comment and labels
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          existing=$(gh api "repos/$REPO/issues/$ISSUE/comments" --paginate \
+            --jq '[.[] | select(.body | contains("<!-- story-quality-gate -->"))][0].id // empty')
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$existing" -F body=@report.md > /dev/null
+          else
+            gh issue comment "$ISSUE" --repo "$REPO" --body-file report.md
+          fi
+
+          if [ "${{ steps.lint.outputs.ready }}" = "true" ]; then
+            gh issue edit "$ISSUE" --repo "$REPO" --add-label ready --remove-label needs-refinement || true
+          else
+            gh issue edit "$ISSUE" --repo "$REPO" --add-label needs-refinement --remove-label ready || true
+          fi

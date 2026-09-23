@@ -1,0 +1,40 @@
+name: Intake request
+description: A new need or problem. Describe the problem, not the solution.
+title: "[Intake] "
+labels: ["intake", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you seeing?
+      description: Describe what happens today and why it's a problem. Avoid proposing a solution here.
+    validations:
+      required: true
+  - type: input
+    id: who
+    attributes:
+      label: Who is affected?
+      placeholder: "e.g. Entry clerks at the Toronto office, ~25 people"
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Business impact
+      options: ["Revenue / cost", "Compliance / regulatory risk", "Customer experience", "Team efficiency", "Other"]
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or size of impact
+      description: Numbers, if you have them (hours lost, error counts, tickets). "Unknown" is fine.
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Time criticality
+      options: ["Deadline-driven (add date below)", "Getting worse over time", "Stable, but costly", "Nice to have"]
+  - type: input
+    id: deadline
+    attributes:
+      label: Deadline (if any)
